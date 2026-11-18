@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7hd4aokd13pb"
-path="res://.godot/imported/priest2_v1_2.png-3f6f954059a2bc131bd509bdc2dc978b.ctex"
+uid="uid://dynrvk3bxy7bs"
+path="res://.godot/imported/Christmas_Gingerbread_Move.png-1561303fed94fe4b2e1cfcba78d019bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pj/priest2_v1_2.png"
-dest_files=["res://.godot/imported/priest2_v1_2.png-3f6f954059a2bc131bd509bdc2dc978b.ctex"]
+source_file="res://assets/enemigo_gengibre/Christmas_Gingerbread_Move.png"
+dest_files=["res://.godot/imported/Christmas_Gingerbread_Move.png-1561303fed94fe4b2e1cfcba78d019bf.ctex"]
 
 [params]
 
