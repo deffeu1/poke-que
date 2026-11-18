@@ -1,5 +1,115 @@
 [gd_scene format=3 uid="uid://bsnoxfaxq0kfg"]
 
+[ext_resource type="Script" uid="uid://dwmdje7vqcbyb" path="res://scripts/battle_scene.gd" id="1_y7ale"]
+[ext_resource type="Texture2D" uid="uid://2lcnkni56xgc" path="res://assets/enemigo_gengibre/Christmas_Gingerbread_Idle.png" id="2_mcooq"]
+[ext_resource type="Texture2D" uid="uid://uk5es38gqwje" path="res://assets/pj/idle/up/idle_up.png" id="3_npaif"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k3ku"]
+atlas = ExtResource("2_mcooq")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc0ev"]
+atlas = ExtResource("2_mcooq")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ybvi"]
+atlas = ExtResource("2_mcooq")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp53c"]
+atlas = ExtResource("2_mcooq")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wh160"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k3ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc0ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ybvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp53c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2tbl"]
+atlas = ExtResource("3_npaif")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iobr"]
+atlas = ExtResource("3_npaif")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igc40"]
+atlas = ExtResource("3_npaif")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi7bo"]
+atlas = ExtResource("3_npaif")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skkal"]
+atlas = ExtResource("3_npaif")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj8g5"]
+atlas = ExtResource("3_npaif")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wy0d"]
+atlas = ExtResource("3_npaif")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00es8"]
+atlas = ExtResource("3_npaif")
+region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mcooq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2tbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iobr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igc40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi7bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skkal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj8g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wy0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00es8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_npaif"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_5k3ku"]
+font_size = 21
+
 [node name="BattleScene" type="Control" unique_id=255319713]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +117,117 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y7ale")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1984589674]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.35006392, 0.35006395, 0.35006392, 1)
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1627054440]
+position = Vector2(956.00006, 203.00002)
+scale = Vector2(4.96875, 4.09375)
+sprite_frames = SubResource("SpriteFrames_wh160")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1976145346]
+position = Vector2(180.00002, 465)
+scale = Vector2(7.1979165, 5.8875)
+sprite_frames = SubResource("SpriteFrames_mcooq")
+
+[node name="EnemyHUD" type="VBoxContainer" parent="." unique_id=887312940]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -155.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="EnemyName" type="Label" parent="EnemyHUD" unique_id=301821018]
+layout_mode = 2
+text = "Hombre de Jengibre"
+label_settings = SubResource("LabelSettings_npaif")
+horizontal_alignment = 1
+
+[node name="EnemyHP" type="ProgressBar" parent="EnemyHUD" unique_id=929219711]
+layout_mode = 2
+
+[node name="PlayerHUD" type="VBoxContainer" parent="." unique_id=1529775294]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_right = 212.0
+grow_vertical = 0
+
+[node name="PlayerName" type="Label" parent="PlayerHUD" unique_id=1885190979]
+layout_mode = 2
+text = "Jugador"
+label_settings = SubResource("LabelSettings_npaif")
+horizontal_alignment = 1
+
+[node name="PlayerHP" type="ProgressBar" parent="PlayerHUD" unique_id=605729765]
+layout_mode = 2
+
+[node name="DialogPanel" type="Panel" parent="." unique_id=1941156112]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277
+anchor_top = 0.772
+anchor_right = 1.0
+anchor_bottom = 0.841
+offset_left = -0.104003906
+offset_top = -0.25601196
+offset_right = -5.0
+offset_bottom = 0.031982422
+grow_vertical = 2
+
+[node name="DialogLabel" type="Label" parent="DialogPanel" unique_id=925057784]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98700005
+anchor_bottom = 0.92200005
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 12.763977
+offset_bottom = 2.5099983
+text = "¿Qué hará el Jugador?"
+label_settings = SubResource("LabelSettings_5k3ku")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionMenu" type="HBoxContainer" parent="." unique_id=1753804467]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.275
+anchor_top = 0.846
+anchor_right = 0.99700004
+anchor_bottom = 0.99200004
+offset_left = 0.19998169
+offset_top = -0.20800781
+offset_right = 0.45593262
+offset_bottom = 0.18395996
+
+[node name="BtnAtacar" type="Button" parent="ActionMenu" unique_id=1463619614]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Atacar"
+
+[node name="BtnCurar" type="Button" parent="ActionMenu" unique_id=367620461]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Curar"
+
+[node name="BtnHuir" type="Button" parent="ActionMenu" unique_id=1538760151]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Huir"
+
+[connection signal="pressed" from="ActionMenu/BtnAtacar" to="." method="_on_btn_atacar_pressed"]
+[connection signal="pressed" from="ActionMenu/BtnCurar" to="." method="_on_btn_curar_pressed"]
+[connection signal="pressed" from="ActionMenu/BtnHuir" to="." method="_on_btn_huir_pressed"]

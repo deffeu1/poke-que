@@ -98,5 +98,5 @@ func mostrar_exclamacion() -> void:
 	
 	# Espera 0.8 segundos para que se alcance a ver el "!" antes de lanzar el combate
 	await get_tree().create_timer(0.8).timeout
-	print("¡Arranca el combate por turnos!")
-	# Acá después llamamos a la escena de batalla
+	await get_tree().create_timer(0.8).timeout
+	get_tree().change_scene_to_file("res://escenas/battle_scene.tscn")
