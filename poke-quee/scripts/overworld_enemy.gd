@@ -2,6 +2,12 @@ extends CharacterBody2D
 
 @export var speed: float = 40.0
 @export var wander_radius: float = 64.0
+@export var enemy_name: String = "Hombre de Jengibre"
+@export var max_hp: int = 60
+@export var min_damage: int = 10
+@export var max_damage: int = 18
+@export var is_boss: bool = false
+
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var wander_timer: Timer = $WanderTimer
@@ -37,7 +43,10 @@ func _physics_process(_delta: float) -> void:
 	velocity = move_dir * speed
 	move_and_slide()
 	
-	if is_on_wall() or global_position.distance_to(start_position) > wander_radius:
+	if get_slide_collision_count() > 0:
+		elegir_direccion_movimiento()
+		wander_timer.start()
+	elif global_position.distance_to(start_position) > wander_radius:
 		move_dir = (start_position - global_position).normalized()
 		if abs(move_dir.x) > abs(move_dir.y):
 			move_dir = Vector2(sign(move_dir.x), 0)
@@ -50,7 +59,7 @@ func verificar_linea_de_vision(objetivo: Node2D) -> void:
 	raycast.target_position = to_local(objetivo.global_position)
 	raycast.force_raycast_update()
 	
-	if raycast.is_colliding() and raycast.get_collider() != objetivo:
+	if not raycast.is_colliding() or raycast.get_collider() != objetivo:
 		return
 		
 	player_detected = true
@@ -58,8 +67,18 @@ func verificar_linea_de_vision(objetivo: Node2D) -> void:
 	anim.play("idle_" + last_dir)
 	
 	GameManager.current_enemy_id = name
+	GameManager.current_enemy_name = enemy_name
+	GameManager.current_enemy_max_hp = max_hp
+	GameManager.current_enemy_min_dmg = min_damage
+	GameManager.current_enemy_max_dmg = max_damage
+	GameManager.current_enemy_frames = anim.sprite_frames
+	GameManager.is_boss_battle = is_boss
+	
 	GameManager.last_player_position = objetivo.global_position
 	GameManager.has_saved_position = true
+	
+	objetivo.bloquear_movimiento(global_position)
+	mostrar_exclamacion()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -76,7 +95,6 @@ func _on_wander_timer_timeout() -> void:
 func elegir_nueva_accion() -> void:
 	var opciones := [
 		Vector2.ZERO,
-		Vector2.ZERO,
 		Vector2.LEFT,
 		Vector2.RIGHT,
 		Vector2.UP,
@@ -84,6 +102,11 @@ func elegir_nueva_accion() -> void:
 	]
 	move_dir = opciones.pick_random()
 	wander_timer.wait_time = randf_range(1.0, 2.5)
+
+func elegir_direccion_movimiento() -> void:
+	var direcciones := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+	direcciones.erase(move_dir)
+	move_dir = direcciones.pick_random()
 
 func actualizar_animacion_y_vision(dir: Vector2) -> void:
 	if dir == Vector2.ZERO:
@@ -115,4 +138,4 @@ func mostrar_exclamacion() -> void:
 	tween.tween_property(exclamation, "position:y", pos_original.y, 0.12)
 	
 	await get_tree().create_timer(0.8).timeout
-	get_tree().change_scene_to_file("res://escenas/BattleScene.tscn")
+	SceneTransition.transicion_combate("res://escenas/battle_scene.tscn")

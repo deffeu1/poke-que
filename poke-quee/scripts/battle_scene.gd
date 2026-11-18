@@ -63,6 +63,7 @@ func _on_btn_huir_pressed() -> void:
 		return
 	state = State.BUSY
 	ocultar_menus()
+	GameManager.has_saved_position = false
 	dialog_label.text = "¡Escapaste con éxito!"
 	await get_tree().create_timer(1.0).timeout
 	volver_al_mapa()
@@ -147,8 +148,8 @@ func turno_enemigo() -> void:
 		state = State.LOSE
 		dialog_label.text = "Te quedaste sin energía..."
 		await get_tree().create_timer(1.5).timeout
-		GameManager.reset_game()
-		volver_al_mapa()
+		GameManager.game_won = false
+		SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
 	else:
 		turno_jugador()
 
@@ -175,7 +176,12 @@ func ganar_combate() -> void:
 	await tween.finished
 	
 	await get_tree().create_timer(0.8).timeout
-	volver_al_mapa()
+	
+	if GameManager.is_boss_battle:
+		GameManager.game_won = true
+		SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
+	else:
+		volver_al_mapa()
 
 func volver_al_mapa() -> void:
-	get_tree().change_scene_to_file("res://escenas/world.tscn")
+	SceneTransition.cambiar_escena("res://escenas/world.tscn")

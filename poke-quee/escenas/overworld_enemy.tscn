@@ -328,7 +328,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awkuw"]
-size = Vector2(12, 4)
+size = Vector2(12, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_821vs"]
 size = Vector2(36, 38)
@@ -339,6 +339,7 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [node name="OverworldEnemy" type="CharacterBody2D" unique_id=24861734]
+motion_mode = 1
 script = ExtResource("1_821vs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1753152405]
@@ -350,7 +351,7 @@ frame = 1
 frame_progress = 0.39583018
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=304923774]
-position = Vector2(0, 7)
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_awkuw")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1501406988]
@@ -376,7 +377,9 @@ label_settings = SubResource("LabelSettings_6dvav")
 horizontal_alignment = 1
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1761116653]
-target_position = Vector2(0, 45)
+position = Vector2(0, 5)
+target_position = Vector2(0, 41)
+hit_from_inside = true
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

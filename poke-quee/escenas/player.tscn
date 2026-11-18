@@ -505,6 +505,7 @@ animations = [{
 size = Vector2(13, 14)
 
 [node name="character body" type="CharacterBody2D" unique_id=1430670121 groups=["player"]]
+motion_mode = 1
 script = ExtResource("1_g1ak7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1089412729]
