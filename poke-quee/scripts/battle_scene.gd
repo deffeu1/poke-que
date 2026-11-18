@@ -91,10 +91,13 @@ func turno_enemigo() -> void:
 
 func ganar_combate() -> void:
 	state = State.WIN
+	# Registra a este enemigo como derrotado
+	if GameManager.current_enemy_id != "":
+		GameManager.defeated_enemies.append(GameManager.current_enemy_id)
+		
 	dialog_label.text = "¡Ganaste el combate!"
 	await get_tree().create_timer(1.5).timeout
 	volver_al_mapa()
 
 func volver_al_mapa() -> void:
-	# Asegurate de que la ruta coincida con tu escena world.tscn
 	get_tree().change_scene_to_file("res://escenas/world.tscn")

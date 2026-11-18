@@ -14,6 +14,10 @@ config/name="poke-quee"
 run/main_scene="res://escenas/world.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+GameManager="*uid://dd7jhm0sw7bqk"
+
 [display]
 
 window/stretch/mode="canvas_items"

@@ -14,6 +14,10 @@ var last_dir: String = "down"
 var player_detected: bool = false
 
 func _ready() -> void:
+	if GameManager.defeated_enemies.has(name):
+		queue_free()
+		return
+		
 	start_position = global_position
 	exclamation.visible = false
 	elegir_nueva_accion()
@@ -83,6 +87,11 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player_detected = true
 		move_dir = Vector2.ZERO
 		anim.play("idle_" + last_dir)
+		
+		# Guarda quién es este enemigo y dónde estaba el jugador
+		GameManager.current_enemy_id = name
+		GameManager.last_player_position = body.global_position
+		GameManager.has_saved_position = true
 		
 		body.bloquear_movimiento(global_position)
 		mostrar_exclamacion()
