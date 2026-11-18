@@ -16,6 +16,9 @@ var has_saved_position: bool = false
 var player_max_hp: int = 100
 var player_hp: int = 100
 var potions: int = 1 # Cantidad inicial de pociones (poné 0 si querés arrancar sin nada)
+var has_key: bool = false
+var gate_unlocked: bool = false
+
 
 func reset_game() -> void:
 	player_hp = player_max_hp
@@ -25,3 +28,5 @@ func reset_game() -> void:
 	has_saved_position = false
 	is_boss_battle = false
 	game_won = false
+	has_key = false
+	gate_unlocked = false

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://c4qpgn86gcwr4"]
+
+[ext_resource type="Script" uid="uid://2k5vrt8pf1i6" path="res://scripts/npc_guardian.gd" id="1_o7xb4"]
+[ext_resource type="Texture2D" uid="uid://2lcnkni56xgc" path="res://assets/enemigo_gengibre/Christmas_Gingerbread_Idle.png" id="2_qsn3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n0cx"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6pui"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgtaa"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy313"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpkfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6pui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgtaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy313")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg1vn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_apju4"]
+radius = 29.017237
+
+[node name="NpcGuardian" type="StaticBody2D" unique_id=236537830]
+script = ExtResource("1_o7xb4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1535150040]
+scale = Vector2(0.50390625, 0.42578128)
+sprite_frames = SubResource("SpriteFrames_tpkfi")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956239002]
+shape = SubResource("RectangleShape2D_fg1vn")
+
+[node name="PromptLabel" type="Label" parent="." unique_id=1293009483]
+offset_left = -10.0
+offset_top = -33.0
+offset_right = 10.0
+offset_bottom = -10.0
+text = "[E]"
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=2048506649]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=386746016]
+shape = SubResource("CircleShape2D_apju4")
+
+[node name="DialogueLayer" type="CanvasLayer" parent="." unique_id=1334440386]
+layer = 20
+
+[node name="DialogueBox" type="PanelContainer" parent="DialogueLayer" unique_id=682075361]
+custom_minimum_size = Vector2(0, 130)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueText" type="Label" parent="DialogueLayer/DialogueBox" unique_id=54528963]
+layout_mode = 2
+autowrap_mode = 2
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

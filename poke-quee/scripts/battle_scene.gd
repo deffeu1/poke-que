@@ -10,10 +10,10 @@ var enemy_hp: int = 60
 @onready var enemy_sprite: AnimatedSprite2D = $EnemySprite
 @onready var player_hp_bar: ProgressBar = $PlayerHUD/PlayerHP
 @onready var enemy_hp_bar: ProgressBar = $EnemyHUD/EnemyHP
-@onready var dialog_label: Label = $DialogPanel/DialogLabel
-@onready var action_menu: HBoxContainer = $ActionMenu
-@onready var attacks_menu: GridContainer = $AttacksMenu
-@onready var btn_curar: Button = $AttacksMenu/BtnMove3
+@onready var dialog_label: Label = $BottomBar/HBoxContainer/DialogPanel/DialogLabel
+@onready var action_menu: HBoxContainer = $BottomBar/HBoxContainer/MenuPanel/ActionMenu
+@onready var attacks_menu: GridContainer = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu
+@onready var btn_curar: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove3
 
 func _ready() -> void:
 	# Desactiva bucles en las animaciones de ataque si existen

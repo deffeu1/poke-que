@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c7fsqeu48av4a"]
+
+[ext_resource type="PackedScene" uid="uid://b0xp2f71ueqao" path="res://escenas/player.tscn" id="1_6ynll"]
+[ext_resource type="PackedScene" uid="uid://c4qpgn86gcwr4" path="res://escenas/npc_guardian.tscn" id="2_7ak4t"]
+[ext_resource type="PackedScene" uid="uid://cvm7uy3gotipu" path="res://escenas/KeyPickup.tscn" id="3_7ak4t"]
+
+[node name="testroom" type="Node2D" unique_id=993172572]
+
+[node name="character body" parent="." unique_id=1430670121 instance=ExtResource("1_6ynll")]
+
+[node name="NpcGuardian" parent="." unique_id=236537830 instance=ExtResource("2_7ak4t")]
+position = Vector2(129, -23)
+
+[node name="KeyPickup" parent="." unique_id=902387 instance=ExtResource("3_7ak4t")]
+position = Vector2(62, 20)

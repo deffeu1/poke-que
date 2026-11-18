@@ -218,6 +218,11 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_npaif"]
 font_size = 22
 
+[sub_resource type="Theme" id="Theme_tc0ev"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.23921569, 0.19607843, 0.2784314, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_5k3ku"]
 font_size = 21
 
@@ -249,8 +254,6 @@ position = Vector2(818.00006, 265)
 scale = Vector2(4.96875, 4.09375)
 sprite_frames = SubResource("SpriteFrames_wh160")
 animation = &"attack"
-frame = 1
-frame_progress = 0.7314608
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1976145346]
 position = Vector2(180.00002, 465)
@@ -263,8 +266,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -155.0
-offset_bottom = 23.0
+offset_left = -452.0
+offset_top = 82.0
+offset_right = -240.0
+offset_bottom = 144.0
 grow_horizontal = 0
 
 [node name="EnemyName" type="Label" parent="EnemyHUD" unique_id=301821018]
@@ -281,8 +286,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -62.0
-offset_right = 212.0
+offset_left = 70.0
+offset_top = -75.0
+offset_right = 282.0
+offset_bottom = -13.0
 grow_vertical = 0
 
 [node name="PlayerName" type="Label" parent="PlayerHUD" unique_id=1885190979]
@@ -294,87 +301,96 @@ horizontal_alignment = 1
 [node name="PlayerHP" type="ProgressBar" parent="PlayerHUD" unique_id=605729765]
 layout_mode = 2
 
-[node name="DialogPanel" type="Panel" parent="." unique_id=1941156112]
+[node name="BottomBar" type="PanelContainer" parent="." unique_id=1001881475]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.277
-anchor_top = 0.772
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.841
-offset_left = -0.104003906
-offset_top = -54.256012
-offset_right = -5.0
-offset_bottom = -53.968018
-grow_vertical = 2
+anchor_bottom = 1.0
+offset_left = 283.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_tc0ev")
 
-[node name="DialogLabel" type="Label" parent="DialogPanel" unique_id=925057784]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar" unique_id=223104896]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="DialogPanel" type="Panel" parent="BottomBar/HBoxContainer" unique_id=1941156112]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 1.4
+
+[node name="DialogLabel" type="Label" parent="BottomBar/HBoxContainer/DialogPanel" unique_id=925057784]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.98700005
 anchor_bottom = 0.92200005
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 12.763977
-offset_bottom = 2.5099983
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 526.0
+offset_bottom = 6.5099945
 text = "¿Qué hará el Jugador?"
 label_settings = SubResource("LabelSettings_5k3ku")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ActionMenu" type="HBoxContainer" parent="." unique_id=1753804467]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.275
-anchor_top = 0.846
-anchor_right = 0.99700004
-anchor_bottom = 0.99200004
-offset_left = 1.1999817
-offset_top = -53.208008
-offset_right = 1.4559326
-offset_bottom = -52.81604
-
-[node name="BtnAtacar" type="Button" parent="ActionMenu" unique_id=1463619614]
+[node name="MenuPanel" type="PanelContainer" parent="BottomBar/HBoxContainer" unique_id=447279145]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="ActionMenu" type="HBoxContainer" parent="BottomBar/HBoxContainer/MenuPanel" unique_id=1753804467]
+layout_mode = 2
+
+[node name="BtnAtacar" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/ActionMenu" unique_id=1463619614]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 29
 text = "Atacar"
 
-[node name="BtnHuir" type="Button" parent="ActionMenu" unique_id=1538760151]
+[node name="BtnHuir" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/ActionMenu" unique_id=1538760151]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 29
 text = "Huir"
 
-[node name="AttacksMenu" type="GridContainer" parent="." unique_id=1649267129]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.38200003
-anchor_top = 0.767
-anchor_right = 0.99500006
-anchor_bottom = 0.99100006
-offset_left = -0.06402588
-offset_top = -0.016021729
-offset_right = -66.24011
-offset_bottom = -9.16803
+[node name="AttacksMenu" type="GridContainer" parent="BottomBar/HBoxContainer/MenuPanel" unique_id=1649267129]
+layout_mode = 2
 columns = 2
 
-[node name="BtnMove1" type="Button" parent="AttacksMenu" unique_id=1663490470]
+[node name="BtnMove1" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/AttacksMenu" unique_id=1663490470]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 29
 text = "Golpe Rápido"
 
-[node name="BtnMove2" type="Button" parent="AttacksMenu" unique_id=395879285]
+[node name="BtnMove2" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/AttacksMenu" unique_id=395879285]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 29
 text = "Bola de Fuego"
 
-[node name="BtnMove3" type="Button" parent="AttacksMenu" unique_id=639405628]
+[node name="BtnMove3" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/AttacksMenu" unique_id=639405628]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 29
 text = "Curar"
 
-[node name="BtnVolver" type="Button" parent="AttacksMenu" unique_id=1062695558]
+[node name="BtnVolver" type="Button" parent="BottomBar/HBoxContainer/MenuPanel/AttacksMenu" unique_id=1062695558]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 29
 text = "Volver"
 
-[connection signal="pressed" from="ActionMenu/BtnAtacar" to="." method="_on_btn_atacar_pressed"]
-[connection signal="pressed" from="ActionMenu/BtnHuir" to="." method="_on_btn_huir_pressed"]
-[connection signal="pressed" from="AttacksMenu/BtnMove1" to="." method="_on_btn_move_1_pressed"]
-[connection signal="pressed" from="AttacksMenu/BtnMove2" to="." method="_on_btn_move_2_pressed"]
-[connection signal="pressed" from="AttacksMenu/BtnMove3" to="." method="_on_btn_move_3_pressed"]
-[connection signal="pressed" from="AttacksMenu/BtnVolver" to="." method="_on_btn_volver_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/ActionMenu/BtnAtacar" to="." method="_on_btn_atacar_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/ActionMenu/BtnHuir" to="." method="_on_btn_huir_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove1" to="." method="_on_btn_move_1_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove2" to="." method="_on_btn_move_2_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove3" to="." method="_on_btn_move_3_pressed"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnVolver" to="." method="_on_btn_volver_pressed"]
