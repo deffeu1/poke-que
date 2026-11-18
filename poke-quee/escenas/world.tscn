@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dj3fiet3ny42b" path="res://scripts/world.gd" id="1_xsxho"]
 [ext_resource type="PackedScene" uid="uid://b0xp2f71ueqao" path="res://escenas/player.tscn" id="2_58mta"]
 [ext_resource type="PackedScene" uid="uid://bgusutfvxj4is" path="res://escenas/overworld_enemy.tscn" id="4_3f1ia"]
+[ext_resource type="PackedScene" uid="uid://ncrbeujql68g" path="res://escenas/PotionPickup.tscn" id="5_jhysc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58mta"]
 texture = ExtResource("1_7jpok")
@@ -348,7 +349,7 @@ texture = ExtResource("1_7jpok")
 [sub_resource type="TileSet" id="TileSet_d0njd"]
 sources/0 = SubResource("TileSetAtlasSource_iop0s")
 
-[node name="Node2D" type="Node2D" unique_id=1522284050]
+[node name="Node2D" type="Node2D" unique_id=1522284050 groups=["world_hud"]]
 script = ExtResource("1_xsxho")
 
 [node name="piso" type="TileMapLayer" parent="." unique_id=411375874]
@@ -371,3 +372,30 @@ position = Vector2(199, 200)
 
 [node name="OverworldEnemy2" parent="." unique_id=361406199 instance=ExtResource("4_3f1ia")]
 position = Vector2(360, 177)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1951445157]
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD" unique_id=1424944491]
+anchors_preset = -1
+anchor_right = 0.164
+anchor_bottom = 0.083000004
+offset_right = 0.07199097
+offset_bottom = 0.21599579
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PanelContainer" unique_id=1543391784]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/VBoxContainer" unique_id=1089952058]
+layout_mode = 2
+text = "PS Jugador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldHPBar" type="ProgressBar" parent="HUD/PanelContainer/VBoxContainer" unique_id=902331630]
+layout_mode = 2
+
+[node name="PotionsLabel" type="Label" parent="HUD/PanelContainer/VBoxContainer" unique_id=63812807]
+layout_mode = 2
+
+[node name="PotionPickup" parent="." unique_id=902387 instance=ExtResource("5_jhysc")]
+position = Vector2(57, 44)

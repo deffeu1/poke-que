@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://ncrbeujql68g"]
+
+[ext_resource type="Script" uid="uid://q5n88ggls5qf" path="res://scripts/potion_pickup.gd" id="1_yoweq"]
+[ext_resource type="Texture2D" uid="uid://bkdjdy16lasss" path="res://assets/pocion/Big Vial - RED - Spritesheet.png" id="2_wekhp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu5rw"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(0, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4po1"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(22, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjx4y"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(44, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2hjv"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(66, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr5py"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(88, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5je0"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(110, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yl0g"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(132, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c56jx"]
+atlas = ExtResource("2_wekhp")
+region = Rect2(154, 0, 22, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eb2fj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4po1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjx4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2hjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr5py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5je0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yl0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c56jx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m6y1"]
+size = Vector2(10, 12)
+
+[node name="PotionPickup" type="Area2D" unique_id=902387]
+script = ExtResource("1_yoweq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396787998]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.36363637, 0.25675675)
+sprite_frames = SubResource("SpriteFrames_eb2fj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=979679136]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2m6y1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

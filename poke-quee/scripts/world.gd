@@ -2,9 +2,12 @@ extends Node2D
 
 @onready var tilemap: TileMapLayer = $piso # Cambiá el nombre si tu nodo se llama distinto
 @onready var camera: Camera2D = $"character body/Camera2D"
+@onready var hp_bar: ProgressBar = $HUD/PanelContainer/VBoxContainer/WorldHPBar
+@onready var potions_label: Label = $HUD/PanelContainer/VBoxContainer/PotionsLabel
 
 func _ready() -> void:
 	ajustar_limites_camara()
+	actualizar_hud()
 
 func ajustar_limites_camara() -> void:
 	# Obtiene el rectángulo ocupado por los tiles en celdas
@@ -17,3 +20,8 @@ func ajustar_limites_camara() -> void:
 	camera.limit_top = map_rect.position.y * tile_size.y
 	camera.limit_right = map_rect.end.x * tile_size.x
 	camera.limit_bottom = map_rect.end.y * tile_size.y
+
+func actualizar_hud() -> void:
+	hp_bar.max_value = GameManager.player_max_hp
+	hp_bar.value = GameManager.player_hp
+	potions_label.text = "Pociones: " + str(GameManager.potions)

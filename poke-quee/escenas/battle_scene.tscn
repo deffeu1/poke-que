@@ -2,7 +2,34 @@
 
 [ext_resource type="Script" uid="uid://dwmdje7vqcbyb" path="res://scripts/battle_scene.gd" id="1_y7ale"]
 [ext_resource type="Texture2D" uid="uid://2lcnkni56xgc" path="res://assets/enemigo_gengibre/Christmas_Gingerbread_Idle.png" id="2_mcooq"]
+[ext_resource type="Texture2D" uid="uid://bx1nex6e2n36f" path="res://assets/fondos/Gemini_Generated_Image_ke76rmke76rmke76.png" id="2_npaif"]
 [ext_resource type="Texture2D" uid="uid://uk5es38gqwje" path="res://assets/pj/idle/up/idle_up.png" id="3_npaif"]
+[ext_resource type="Texture2D" uid="uid://d2n5ru0p5c82r" path="res://assets/enemigo_gengibre/atak/Christmas_Gingerbread_Attack.png" id="3_tc0ev"]
+[ext_resource type="Texture2D" uid="uid://dffw3nyhv5wq1" path="res://assets/pj/ataque/attack1_up.png" id="5_4ybvi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sfgn"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47s2l"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqf0t"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubrjt"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu287"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7fsa"]
+atlas = ExtResource("3_tc0ev")
+region = Rect2(512, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5k3ku"]
 atlas = ExtResource("2_mcooq")
@@ -24,6 +51,29 @@ region = Rect2(384, 128, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0sfgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47s2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqf0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubrjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu287")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7fsa")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5k3ku")
 }, {
 "duration": 1.0,
@@ -36,9 +86,41 @@ animations = [{
 "texture": SubResource("AtlasTexture_wp53c")
 }],
 "loop": true,
-"name": &"default",
+"name": &"gengibre",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heb77"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htr7h"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjb84"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwfwd"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkt8l"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6kvp"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk0jj"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyix1"]
+atlas = ExtResource("5_4ybvi")
+region = Rect2(672, 0, 96, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2tbl"]
 atlas = ExtResource("3_npaif")
@@ -76,6 +158,35 @@ region = Rect2(672, 0, 96, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_heb77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htr7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjb84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwfwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkt8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6kvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk0jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyix1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y2tbl")
 }, {
 "duration": 1.0,
@@ -100,7 +211,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_00es8")
 }],
 "loop": true,
-"name": &"default",
+"name": &"player",
 "speed": 5.0
 }]
 
@@ -119,24 +230,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y7ale")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1984589674]
+[node name="Background" type="TextureRect" parent="." unique_id=1336990204]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -443.0
+offset_top = -78.0
+offset_right = 201.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.35006392, 0.35006395, 0.35006392, 1)
+texture = ExtResource("2_npaif")
+expand_mode = 1
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1627054440]
-position = Vector2(956.00006, 203.00002)
+position = Vector2(818.00006, 265)
 scale = Vector2(4.96875, 4.09375)
 sprite_frames = SubResource("SpriteFrames_wh160")
+animation = &"attack"
+frame = 1
+frame_progress = 0.7314608
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1976145346]
 position = Vector2(180.00002, 465)
 scale = Vector2(7.1979165, 5.8875)
 sprite_frames = SubResource("SpriteFrames_mcooq")
+animation = &"attack"
 
 [node name="EnemyHUD" type="VBoxContainer" parent="." unique_id=887312940]
 layout_mode = 1
@@ -182,9 +302,9 @@ anchor_top = 0.772
 anchor_right = 1.0
 anchor_bottom = 0.841
 offset_left = -0.104003906
-offset_top = -0.25601196
+offset_top = -54.256012
 offset_right = -5.0
-offset_bottom = 0.031982422
+offset_bottom = -53.968018
 grow_vertical = 2
 
 [node name="DialogLabel" type="Label" parent="DialogPanel" unique_id=925057784]
@@ -208,26 +328,53 @@ anchor_left = 0.275
 anchor_top = 0.846
 anchor_right = 0.99700004
 anchor_bottom = 0.99200004
-offset_left = 0.19998169
-offset_top = -0.20800781
-offset_right = 0.45593262
-offset_bottom = 0.18395996
+offset_left = 1.1999817
+offset_top = -53.208008
+offset_right = 1.4559326
+offset_bottom = -52.81604
 
 [node name="BtnAtacar" type="Button" parent="ActionMenu" unique_id=1463619614]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Atacar"
 
-[node name="BtnCurar" type="Button" parent="ActionMenu" unique_id=367620461]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Curar"
-
 [node name="BtnHuir" type="Button" parent="ActionMenu" unique_id=1538760151]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Huir"
 
+[node name="AttacksMenu" type="GridContainer" parent="." unique_id=1649267129]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38200003
+anchor_top = 0.767
+anchor_right = 0.99500006
+anchor_bottom = 0.99100006
+offset_left = -0.06402588
+offset_top = -0.016021729
+offset_right = -66.24011
+offset_bottom = -9.16803
+columns = 2
+
+[node name="BtnMove1" type="Button" parent="AttacksMenu" unique_id=1663490470]
+layout_mode = 2
+text = "Golpe Rápido"
+
+[node name="BtnMove2" type="Button" parent="AttacksMenu" unique_id=395879285]
+layout_mode = 2
+text = "Bola de Fuego"
+
+[node name="BtnMove3" type="Button" parent="AttacksMenu" unique_id=639405628]
+layout_mode = 2
+text = "Curar"
+
+[node name="BtnVolver" type="Button" parent="AttacksMenu" unique_id=1062695558]
+layout_mode = 2
+text = "Volver"
+
 [connection signal="pressed" from="ActionMenu/BtnAtacar" to="." method="_on_btn_atacar_pressed"]
-[connection signal="pressed" from="ActionMenu/BtnCurar" to="." method="_on_btn_curar_pressed"]
 [connection signal="pressed" from="ActionMenu/BtnHuir" to="." method="_on_btn_huir_pressed"]
+[connection signal="pressed" from="AttacksMenu/BtnMove1" to="." method="_on_btn_move_1_pressed"]
+[connection signal="pressed" from="AttacksMenu/BtnMove2" to="." method="_on_btn_move_2_pressed"]
+[connection signal="pressed" from="AttacksMenu/BtnMove3" to="." method="_on_btn_move_3_pressed"]
+[connection signal="pressed" from="AttacksMenu/BtnVolver" to="." method="_on_btn_volver_pressed"]

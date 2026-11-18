@@ -365,15 +365,18 @@ autostart = true
 
 [node name="ExclamationLabel" type="Label" parent="." unique_id=87673957]
 z_index = 10
-offset_left = -10.0
-offset_top = -32.0
-offset_right = 10.0
-offset_bottom = -9.0
+offset_left = -12.0
+offset_top = -30.0
+offset_right = 14.0
+offset_bottom = -7.0
 theme_override_colors/font_color = Color(1, 0.11764706, 0.07450981, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54901963)
 text = "!"
 label_settings = SubResource("LabelSettings_6dvav")
 horizontal_alignment = 1
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1761116653]
+target_position = Vector2(0, 45)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
