@@ -41,7 +41,7 @@ func _ready() -> void:
 		enemy_sprite.play(enemy_sprite.sprite_frames.get_animation_names()[0])
 		
 	if GameManager.is_boss_battle:
-		enemy_sprite.scale = Vector2(5.5, 5.5)
+		enemy_sprite.scale = Vector2(7.0, 7.0)
 	else:
 		enemy_sprite.scale = Vector2(4.0, 4.0)
 		
@@ -147,6 +147,11 @@ func ejecutar_movimiento(nombre: String, valor_min: int, valor_max: int, es_cura
 	ocultar_menus()
 	
 	var cantidad := randi_range(valor_min, valor_max)
+	if not es_cura:
+		if GameManager.is_boss_battle and not GameManager.player_has_powerup:
+			cantidad = 1
+		elif GameManager.player_has_powerup:
+			cantidad = int(cantidad * 1.5)
 	
 	if es_cura:
 		GameManager.potions -= 1
@@ -202,10 +207,18 @@ func turno_enemigo() -> void:
 	
 	if GameManager.player_hp <= 0:
 		state = State.LOSE
-		dialog_label.text = "Te quedaste sin energía..."
-		await get_tree().create_timer(1.5).timeout
-		GameManager.game_won = false
-		SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
+		if GameManager.is_boss_battle and not GameManager.boss_first_encounter_done:
+			GameManager.boss_first_encounter_done = true
+			GameManager.is_boss_battle = false
+			GameManager.player_hp = 1
+			dialog_label.text = "Su poder es abrumador... ¡Lograste arrastrarte fuera de la sala antes de caer!"
+			await get_tree().create_timer(2.2).timeout
+			SceneTransition.cambiar_escena("res://escenas/world.tscn")
+		else:
+			dialog_label.text = "Te quedaste sin energía..."
+			await get_tree().create_timer(1.5).timeout
+			GameManager.game_won = false
+			SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
 	else:
 		turno_jugador()
 

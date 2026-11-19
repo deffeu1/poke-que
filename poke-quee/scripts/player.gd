@@ -10,7 +10,8 @@ var can_move: bool = true
 
 func _ready() -> void:
 	if GameManager.has_saved_position:
-		global_position = GameManager.last_player_position
+		global_position = GameManager.saved_player_position
+		GameManager.has_saved_position = false
 
 func _physics_process(_delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

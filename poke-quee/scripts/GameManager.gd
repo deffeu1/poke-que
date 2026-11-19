@@ -26,7 +26,10 @@ var mana_potions: int = 1
 var collected_mana_potions: Array[String] = []
 var guardian_following: bool = false
 var guardian_dead: bool = false
-
+var saved_player_position: Vector2 = Vector2.ZERO
+var boss_first_encounter_done: bool = false
+var player_has_powerup: bool = false
+var show_revenge_dialogue: bool = false
 
 
 func reset_game() -> void:
@@ -39,6 +42,9 @@ func reset_game() -> void:
 	collected_mana_potions.clear()
 	has_saved_position = false
 	is_boss_battle = false
+	boss_first_encounter_done = false
+	show_revenge_dialogue = false
+	player_has_powerup = false
 	game_won = false
 	has_key = false
 	gate_unlocked = false

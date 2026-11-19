@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d2b4ex5pdn2wd"]
 
 [ext_resource type="PackedScene" uid="uid://bgusutfvxj4is" path="res://escenas/overworld_enemy.tscn" id="1_wi5mj"]
+[ext_resource type="Script" uid="uid://qpceh2800q63" path="res://scripts/boss_enemy.gd" id="2_b85fn"]
 [ext_resource type="Texture2D" uid="uid://dqoakb880n4d5" path="res://assets/boss/Christmas_Devil_Attack.png" id="2_t8nto"]
 [ext_resource type="Texture2D" uid="uid://e4emmou86m3q" path="res://assets/boss/Christmas_Devil_Idle.png" id="3_b85fn"]
 [ext_resource type="Texture2D" uid="uid://e4g4ltu0b4mq" path="res://assets/boss/Christmas_Devil_Move.png" id="4_fvo4r"]
@@ -408,16 +409,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8nto"]
+size = Vector2(345, 135)
+
 [node name="BossEnemy" unique_id=24861734 instance=ExtResource("1_wi5mj")]
-speed = 25.0
-max_hp = 140
-min_damage = 16
-max_damage = 28
-is_boss = true
+script = ExtResource("2_b85fn")
+boss_name = "Señor de la Mazmorra"
+boss_max_hp = 140
+min_dmg = 16
+max_dmg = 26
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1753152405]
-position = Vector2(0, 0)
+position = Vector2(1, -8.999998)
+scale = Vector2(1.2163086, 0.96875)
 sprite_frames = SubResource("SpriteFrames_7pqfy")
 animation = &"attack"
 frame = 0
 frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(1501406988) index="0" unique_id=1657333875]
+position = Vector2(-100.5, -0.5)
+shape = SubResource("RectangleShape2D_t8nto")
+
+[node name="ExclamationLabel" parent="." index="4" unique_id=87673957]
+offset_top = -46.0
+offset_bottom = -23.0
+
+[node name="RayCast2D" parent="." index="5" unique_id=1761116653]
+target_position = Vector2(0, 61)

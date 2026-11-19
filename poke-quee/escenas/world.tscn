@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ncrbeujql68g" path="res://escenas/PotionPickup.tscn" id="5_jhysc"]
 [ext_resource type="PackedScene" uid="uid://c4qpgn86gcwr4" path="res://escenas/npc_guardian.tscn" id="6_iop0s"]
 [ext_resource type="PackedScene" uid="uid://cvm7uy3gotipu" path="res://escenas/KeyPickup.tscn" id="7_d0njd"]
+[ext_resource type="PackedScene" uid="uid://d2b4ex5pdn2wd" path="res://escenas/BossEnemy.tscn" id="8_slmik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58mta"]
 texture = ExtResource("1_7jpok")
@@ -421,3 +422,6 @@ position = Vector2(95, 566)
 
 [node name="KeyPickup" parent="." unique_id=1294771555 instance=ExtResource("7_d0njd")]
 position = Vector2(53, 477)
+
+[node name="BossEnemy" parent="." unique_id=2049287388 instance=ExtResource("8_slmik")]
+position = Vector2(548, 763)
