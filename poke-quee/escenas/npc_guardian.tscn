@@ -3,56 +3,60 @@
 [ext_resource type="Script" uid="uid://2k5vrt8pf1i6" path="res://scripts/npc_guardian.gd" id="1_o7xb4"]
 [ext_resource type="Texture2D" uid="uid://2lcnkni56xgc" path="res://assets/enemigo_gengibre/Christmas_Gingerbread_Idle.png" id="2_qsn3w"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7xb4"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsn3w"]
+atlas = ExtResource("2_qsn3w")
+region = Rect2(128, 384, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8n0cx"]
 atlas = ExtResource("2_qsn3w")
-region = Rect2(0, 256, 128, 128)
+region = Rect2(256, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6pui"]
 atlas = ExtResource("2_qsn3w")
-region = Rect2(128, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgtaa"]
-atlas = ExtResource("2_qsn3w")
-region = Rect2(256, 256, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vy313"]
-atlas = ExtResource("2_qsn3w")
-region = Rect2(384, 256, 128, 128)
+region = Rect2(384, 384, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tpkfi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o7xb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsn3w")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8n0cx")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6pui")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgtaa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vy313")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 7.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg1vn"]
+size = Vector2(12, 6)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_apju4"]
 radius = 29.017237
 
 [node name="NpcGuardian" type="StaticBody2D" unique_id=236537830]
 script = ExtResource("1_o7xb4")
+desplazamiento_al_abrir = Vector2(50, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1535150040]
 scale = Vector2(0.50390625, 0.42578128)
 sprite_frames = SubResource("SpriteFrames_tpkfi")
 animation = &"idle"
+frame_progress = 0.22288868
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956239002]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_fg1vn")
 
 [node name="PromptLabel" type="Label" parent="." unique_id=1293009483]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dvl4slq8gmjem"]
+
+[ext_resource type="Script" uid="uid://bg3qeik6evpkr" path="res://scripts/inventory_menu.gd" id="1_lva2b"]
+
+[node name="InventoryMenu" type="CanvasLayer" unique_id=1895204838]
+script = ExtResource("1_lva2b")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1062052709]
+anchors_preset = -1
+anchor_left = 0.36600003
+anchor_top = 0.38700002
+anchor_right = 0.62100005
+anchor_bottom = 0.66200006
+offset_left = 0.36798096
+offset_top = 0.22398376
+offset_right = -0.39208984
+offset_bottom = 0.023956299
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=803222300]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1437211142]
+layout_mode = 2
+text = "INVENTARIO"
+
+[node name="BtnUsarVida" type="Button" parent="Panel/VBoxContainer" unique_id=1439257100]
+layout_mode = 2
+
+[node name="BtnUsarMana" type="Button" parent="Panel/VBoxContainer" unique_id=1624719430]
+layout_mode = 2
+
+[node name="LlaveLabel" type="Label" parent="Panel/VBoxContainer" unique_id=382539995]
+layout_mode = 2
+
+[connection signal="pressed" from="Panel/VBoxContainer/BtnUsarVida" to="." method="_on_btn_usar_vida_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/BtnUsarMana" to="." method="_on_btn_usar_mana_pressed"]

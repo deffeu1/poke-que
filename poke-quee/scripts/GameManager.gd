@@ -1,5 +1,6 @@
 extends Node
 
+signal stats_changed
 
 var game_won: bool = false
 var current_enemy_name: String = "Hombre de Jengibre"
@@ -15,18 +16,32 @@ var last_player_position: Vector2 = Vector2.ZERO
 var has_saved_position: bool = false
 var player_max_hp: int = 100
 var player_hp: int = 100
-var potions: int = 1 # Cantidad inicial de pociones (poné 0 si querés arrancar sin nada)
+var potions: int = 1 
 var has_key: bool = false
 var gate_unlocked: bool = false
+var talked_to_guardian: bool = false
+var player_max_mana: int = 50
+var player_mana: int = 50
+var mana_potions: int = 1
+var collected_mana_potions: Array[String] = []
+var guardian_following: bool = false
+var guardian_dead: bool = false
+
 
 
 func reset_game() -> void:
 	player_hp = player_max_hp
+	player_mana = player_max_mana
 	potions = 1
+	mana_potions = 1
 	defeated_enemies.clear()
 	collected_potions.clear()
+	collected_mana_potions.clear()
 	has_saved_position = false
 	is_boss_battle = false
 	game_won = false
 	has_key = false
 	gate_unlocked = false
+	talked_to_guardian = false
+	guardian_following = false
+	guardian_dead = false

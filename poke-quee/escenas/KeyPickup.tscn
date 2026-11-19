@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvm7uy3gotipu"]
 
-[ext_resource type="Script" uid="uid://6dn2w8lvoyke" path="res://key_pickup.gd" id="1_gmi61"]
+[ext_resource type="Script" uid="uid://6dn2w8lvoyke" path="res://scripts/key_pickup.gd" id="1_gmi61"]
 [ext_resource type="Texture2D" uid="uid://cba53ci0mowpy" path="res://assets/llave/Key 13 - SILVER - Spritesheet.png" id="2_b3qeu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuvsw"]

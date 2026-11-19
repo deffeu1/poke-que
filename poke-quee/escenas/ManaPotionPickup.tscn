@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://ecsjk5gvf5jg"]
+
+[ext_resource type="Script" uid="uid://4hd2ylbvm6gq" path="res://scripts/mana_potion_pickup.gd" id="1_2gljx"]
+[ext_resource type="Texture2D" uid="uid://be0brg8cf6nqs" path="res://assets/pocion/Big Vial - BLUE - Spritesheet.png" id="2_2gljx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyjkj"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(0, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a7qj"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(22, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7h1w"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(44, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urc76"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(66, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kedq"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(88, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vyh4"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(110, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mimo3"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(132, 0, 22, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c343"]
+atlas = ExtResource("2_2gljx")
+region = Rect2(154, 0, 22, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4o3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyjkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a7qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7h1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urc76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kedq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vyh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mimo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c343")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m6y1"]
+size = Vector2(10, 12)
+
+[node name="ManaPotionPickup" type="Area2D" unique_id=902387]
+script = ExtResource("1_2gljx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396787998]
+position = Vector2(0, 0.6250003)
+scale = Vector2(0.36363637, 0.2905405)
+sprite_frames = SubResource("SpriteFrames_b4o3r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=979679136]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2m6y1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

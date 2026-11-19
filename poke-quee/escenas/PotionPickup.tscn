@@ -74,8 +74,8 @@ size = Vector2(10, 12)
 script = ExtResource("1_yoweq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396787998]
-position = Vector2(0, 9.536743e-07)
-scale = Vector2(0.36363637, 0.25675675)
+position = Vector2(0, 0.6250003)
+scale = Vector2(0.36363637, 0.2905405)
 sprite_frames = SubResource("SpriteFrames_eb2fj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=979679136]
