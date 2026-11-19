@@ -45,7 +45,7 @@ size = Vector2(12, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_apju4"]
 radius = 29.017237
 
-[node name="NpcGuardian" type="StaticBody2D" unique_id=236537830]
+[node name="NpcGuardian" type="CharacterBody2D" unique_id=1142734224]
 script = ExtResource("1_o7xb4")
 desplazamiento_al_abrir = Vector2(50, 0)
 
@@ -53,7 +53,7 @@ desplazamiento_al_abrir = Vector2(50, 0)
 scale = Vector2(0.50390625, 0.42578128)
 sprite_frames = SubResource("SpriteFrames_tpkfi")
 animation = &"idle"
-frame_progress = 0.22288868
+frame_progress = 0.9379573
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956239002]
 position = Vector2(0, 4)
