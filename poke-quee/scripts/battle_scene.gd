@@ -255,20 +255,19 @@ func ganar_combate() -> void:
 	if GameManager.current_enemy_id != "":
 		GameManager.defeated_enemies.append(GameManager.current_enemy_id)
 		
-	dialog_label.text = "¡Ganaste el combate!"
+	if GameManager.is_boss_battle:
+		GameManager.is_boss_battle = false
+		dialog_label.text = "¡Derrotaste al " + GameManager.current_enemy_name + "! El Orbe Místico ahora está libre."
+	else:
+		dialog_label.text = "¡Ganaste el combate!"
 	
 	var tween := create_tween()
 	tween.tween_property(enemy_sprite, "modulate:a", 0.0, 0.5)
 	tween.parallel().tween_property(enemy_sprite, "position:y", enemy_sprite.position.y + 15, 0.5)
 	await tween.finished
 	
-	await get_tree().create_timer(0.8).timeout
-	
-	if GameManager.is_boss_battle:
-		GameManager.game_won = true
-		SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
-	else:
-		volver_al_mapa()
+	await get_tree().create_timer(1.0).timeout
+	volver_al_mapa()
 
 func volver_al_mapa() -> void:
 	SceneTransition.cambiar_escena("res://escenas/world.tscn")

@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 @export var speed: float = 40.0
+@export var flee_speed: float = 115.0
+@export var flee_distance: float = 150.0
 @export var wander_radius: float = 64.0
 @export var enemy_name: String = "Hombre de Jengibre"
 @export var max_hp: int = 60
 @export var min_damage: int = 10
 @export var max_damage: int = 18
 @export var is_boss: bool = false
-
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var wander_timer: Timer = $WanderTimer
@@ -20,9 +21,11 @@ var move_dir: Vector2 = Vector2.ZERO
 var last_dir: String = "down"
 var player_detected: bool = false
 var player_in_range: Node2D = null
+var player_ref: Node2D = null
+var huyendo: bool = false
 
 func _ready() -> void:
-	if GameManager.defeated_enemies.has(name):
+	if GameManager.defeated_enemies.has(name) and not GameManager.player_has_powerup:
 		queue_free()
 		return
 		
@@ -31,6 +34,10 @@ func _ready() -> void:
 	elegir_nueva_accion()
 
 func _physics_process(_delta: float) -> void:
+	if GameManager.player_has_powerup and not is_boss:
+		procesar_huida()
+		return
+		
 	if player_detected:
 		velocity = Vector2.ZERO
 		return
@@ -55,7 +62,34 @@ func _physics_process(_delta: float) -> void:
 			
 	actualizar_animacion_y_vision(move_dir)
 
+func procesar_huida() -> void:
+	if player_ref == null:
+		player_ref = get_tree().get_first_node_in_group("player")
+		if player_ref == null:
+			return
+			
+	var vector_escape := global_position - player_ref.global_position
+	var distancia := vector_escape.length()
+	
+	if distancia < flee_distance:
+		if not huyendo:
+			huyendo = true
+			exclamation.visible = true
+		var dir_escape := vector_escape.normalized()
+		velocity = dir_escape * flee_speed
+		move_and_slide()
+		actualizar_animacion_y_vision(dir_escape)
+	else:
+		if huyendo:
+			huyendo = false
+			exclamation.visible = false
+		velocity = Vector2.ZERO
+		anim.play("idle_" + last_dir)
+
 func verificar_linea_de_vision(objetivo: Node2D) -> void:
+	if GameManager.player_has_powerup and not is_boss:
+		return
+		
 	raycast.target_position = to_local(objetivo.global_position)
 	raycast.force_raycast_update()
 	
@@ -74,7 +108,7 @@ func verificar_linea_de_vision(objetivo: Node2D) -> void:
 	GameManager.current_enemy_frames = anim.sprite_frames
 	GameManager.is_boss_battle = is_boss
 	
-	GameManager.last_player_position = objetivo.global_position
+	GameManager.saved_player_position = objetivo.global_position
 	GameManager.has_saved_position = true
 	
 	objetivo.bloquear_movimiento(global_position)
@@ -89,7 +123,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		player_in_range = null
 
 func _on_wander_timer_timeout() -> void:
-	if not player_detected:
+	if not player_detected and not huyendo:
 		elegir_nueva_accion()
 
 func elegir_nueva_accion() -> void:
@@ -113,22 +147,24 @@ func actualizar_animacion_y_vision(dir: Vector2) -> void:
 		anim.play("idle_" + last_dir)
 		return
 		
-	if dir.x > 0:
-		last_dir = "right"
-		anim.play("walk_right")
-		detection_area.rotation_degrees = -90
-	elif dir.x < 0:
-		last_dir = "left"
-		anim.play("walk_left")
-		detection_area.rotation_degrees = 90
-	elif dir.y > 0:
-		last_dir = "down"
-		anim.play("walk_down")
-		detection_area.rotation_degrees = 0
-	elif dir.y < 0:
-		last_dir = "up"
-		anim.play("walk_up")
-		detection_area.rotation_degrees = 180
+	if abs(dir.x) > abs(dir.y):
+		if dir.x > 0:
+			last_dir = "right"
+			anim.play("walk_right")
+			detection_area.rotation_degrees = -90
+		else:
+			last_dir = "left"
+			anim.play("walk_left")
+			detection_area.rotation_degrees = 90
+	else:
+		if dir.y > 0:
+			last_dir = "down"
+			anim.play("walk_down")
+			detection_area.rotation_degrees = 0
+		else:
+			last_dir = "up"
+			anim.play("walk_up")
+			detection_area.rotation_degrees = 180
 
 func mostrar_exclamacion() -> void:
 	exclamation.visible = true

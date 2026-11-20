@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cvm7uy3gotipu" path="res://escenas/KeyPickup.tscn" id="7_d0njd"]
 [ext_resource type="PackedScene" uid="uid://d2b4ex5pdn2wd" path="res://escenas/BossEnemy.tscn" id="8_slmik"]
 [ext_resource type="PackedScene" uid="uid://br8f13twi0gkm" path="res://escenas/PowerUpAltar.tscn" id="9_5rmny"]
+[ext_resource type="PackedScene" uid="uid://c1nknx4i7el72" path="res://escenas/MysticOrb.tscn" id="10_nv5wr"]
+[ext_resource type="PackedScene" uid="uid://ecsjk5gvf5jg" path="res://escenas/ManaPotionPickup.tscn" id="11_nilpj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58mta"]
 texture = ExtResource("1_7jpok")
@@ -384,7 +386,7 @@ tile_map_data = PackedByteArray("AAAFABEAAAAEAAcAAAACABEAAAAEAAcAAABCACUAAAAEAAc
 tile_set = SubResource("TileSet_d0njd")
 
 [node name="character body" parent="." unique_id=1430670121 instance=ExtResource("2_58mta")]
-position = Vector2(178, 739)
+position = Vector2(345, 51)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1951445157]
 
@@ -415,9 +417,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_slmik")
 [node name="PotionsLabel" type="Label" parent="HUD/PanelContainer/VBoxContainer" unique_id=63812807]
 layout_mode = 2
 
-[node name="PotionPickup" parent="." unique_id=902387 instance=ExtResource("5_jhysc")]
-position = Vector2(273, 48)
-
 [node name="NpcGuardian" parent="." unique_id=236537830 instance=ExtResource("6_iop0s")]
 position = Vector2(95, 566)
 
@@ -430,7 +429,7 @@ boss_name = "Señor de la Mazmorra, Okarus"
 segunda_ubicacion = NodePath("../PuntoJefeFinal")
 
 [node name="PuntoJefeFinal" type="Marker2D" parent="." unique_id=2031727528]
-position = Vector2(1220, 776)
+position = Vector2(1220, 769)
 
 [node name="enemigos" type="Node" parent="." unique_id=1948256729]
 
@@ -446,5 +445,43 @@ position = Vector2(618, 177)
 [node name="OverworldEnemy4" parent="enemigos" unique_id=1852898793 instance=ExtResource("4_3f1ia")]
 position = Vector2(652, 50)
 
+[node name="OverworldEnemy5" parent="enemigos" unique_id=399553192 instance=ExtResource("4_3f1ia")]
+position = Vector2(1034, 365)
+
+[node name="OverworldEnemy6" parent="enemigos" unique_id=218927155 instance=ExtResource("4_3f1ia")]
+position = Vector2(1219, 352)
+
+[node name="OverworldEnemy7" parent="enemigos" unique_id=277397512 instance=ExtResource("4_3f1ia")]
+position = Vector2(1224, 472)
+
+[node name="OverworldEnemy8" parent="enemigos" unique_id=2079113240 instance=ExtResource("4_3f1ia")]
+position = Vector2(1055, 481)
+
+[node name="OverworldEnemy9" parent="enemigos" unique_id=427847283 instance=ExtResource("4_3f1ia")]
+position = Vector2(1131, 244)
+
 [node name="PowerUpAltar" parent="." unique_id=404536467 instance=ExtResource("9_5rmny")]
 position = Vector2(341, 1076)
+
+[node name="MysticOrb" parent="." unique_id=2026985273 instance=ExtResource("10_nv5wr")]
+position = Vector2(1131, 395)
+
+[node name="Node" type="Node" parent="." unique_id=1212506628]
+
+[node name="PotionPickup" parent="Node" unique_id=902387 instance=ExtResource("5_jhysc")]
+position = Vector2(273, 48)
+
+[node name="PotionPickup2" parent="Node" unique_id=429847462 instance=ExtResource("5_jhysc")]
+position = Vector2(556, 209)
+
+[node name="PotionPickup3" parent="Node" unique_id=1935369728 instance=ExtResource("5_jhysc")]
+position = Vector2(217, 923)
+
+[node name="ManaPotionPickup" parent="Node" unique_id=1856624168 instance=ExtResource("11_nilpj")]
+position = Vector2(414, 652)
+
+[node name="ManaPotionPickup2" parent="Node" unique_id=1253708267 instance=ExtResource("11_nilpj")]
+position = Vector2(480, 237)
+
+[node name="ManaPotionPickup3" parent="Node" unique_id=738908118 instance=ExtResource("11_nilpj")]
+position = Vector2(848, 646)
