@@ -30,7 +30,7 @@ var saved_player_position: Vector2 = Vector2.ZERO
 var boss_first_encounter_done: bool = false
 var player_has_powerup: bool = false
 var show_revenge_dialogue: bool = false
-
+var player_name: String = "Héroe"
 
 func reset_game() -> void:
 	player_hp = player_max_hp

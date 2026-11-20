@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://br8f13twi0gkm"]
+
+[ext_resource type="Script" uid="uid://caraigtw6gufp" path="res://scripts/power_up_altar.gd" id="1_c6bj4"]
+[ext_resource type="Texture2D" uid="uid://b0l8f7vet70v5" path="res://assets/altar/Gemini_Generated_Image_95t5a095t5a095t5-Photoroom.png" id="2_pxw4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maaxg"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(0, 0, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jncxp"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(0, 682, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siw4m"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(682, 0, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cbhg"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(0, 1364, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xflqk"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(682, 682, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ubhy"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(1364, 0, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jem8j"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(682, 1364, 682, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkp7e"]
+atlas = ExtResource("2_pxw4m")
+region = Rect2(1364, 1364, 682, 682)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tvcbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maaxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jncxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siw4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cbhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xflqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ubhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jem8j")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tkp7e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mb4t"]
+radius = 26.019224
+
+[node name="PowerUpAltar" type="Area2D" unique_id=404536467]
+script = ExtResource("1_c6bj4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1828135189]
+position = Vector2(0, 1.9999998)
+scale = Vector2(0.08431084, 0.08412756)
+sprite_frames = SubResource("SpriteFrames_tvcbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=206806594]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_5mb4t")
+
+[node name="PromptLabel" type="Label" parent="." unique_id=836173700]
+offset_left = -10.0
+offset_top = -46.0
+offset_right = 10.0
+offset_bottom = -23.0
+text = "[E]"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

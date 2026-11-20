@@ -35,6 +35,22 @@ func _ready() -> void:
 		
 	if player_sprite.sprite_frames.has_animation("player"):
 		player_sprite.play("player")
+	if GameManager.player_has_powerup:
+		var aura := CPUParticles2D.new()
+		aura.amount = 22
+		aura.lifetime = 0.9
+		aura.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
+		aura.emission_sphere_radius = 16.0
+		aura.gravity = Vector2(0, -32)
+		aura.scale_amount_min = 2.0
+		aura.scale_amount_max = 4.0
+		aura.color = Color(1.0, 0.88, 0.25, 0.9)
+		aura.z_index = -1
+		player_sprite.add_child(aura)
+		
+		var tween_aura := create_tween().set_loops()
+		tween_aura.tween_property(player_sprite, "modulate", Color(1.55, 1.4, 0.8), 0.75)
+		tween_aura.tween_property(player_sprite, "modulate", Color.WHITE, 0.75)
 	if enemy_sprite.sprite_frames.has_animation("gengibre"):
 		enemy_sprite.play("gengibre")
 	elif enemy_sprite.sprite_frames.get_animation_names().size() > 0:
@@ -209,6 +225,7 @@ func turno_enemigo() -> void:
 		state = State.LOSE
 		if GameManager.is_boss_battle and not GameManager.boss_first_encounter_done:
 			GameManager.boss_first_encounter_done = true
+			GameManager.show_revenge_dialogue = true
 			GameManager.is_boss_battle = false
 			GameManager.player_hp = 1
 			dialog_label.text = "Su poder es abrumador... ¡Lograste arrastrarte fuera de la sala antes de caer!"
@@ -221,7 +238,6 @@ func turno_enemigo() -> void:
 			SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
 	else:
 		turno_jugador()
-
 func animar_impacto(sprite: AnimatedSprite2D) -> void:
 	var pos_original := sprite.position
 	var tween := create_tween()

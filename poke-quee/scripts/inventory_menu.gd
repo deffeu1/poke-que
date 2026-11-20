@@ -7,8 +7,10 @@ extends CanvasLayer
 
 func _ready() -> void:
 	panel.visible = false
+	btn_vida.focus_mode = Control.FOCUS_NONE
+	btn_mana.focus_mode = Control.FOCUS_NONE
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventario"):
 		var escena := get_tree().current_scene
 		if escena == null or escena.name == "BattleScene" or escena.name == "MainMenu" or escena.name == "EndScreen":
@@ -16,6 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		panel.visible = not panel.visible
 		if panel.visible:
 			actualizar_ui()
+		get_viewport().set_input_as_handled()
 
 func actualizar_ui() -> void:
 	btn_vida.text = "Poción de Vida (" + str(GameManager.potions) + ") - PS: " + str(GameManager.player_hp) + "/" + str(GameManager.player_max_hp)
