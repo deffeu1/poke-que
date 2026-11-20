@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dk3x803n3ytbl"]
 
+[ext_resource type="Script" uid="uid://b82gamx620uqn" path="res://scripts/name_input.gd" id="1_nea13"]
+
 [node name="NameInput" type="Control" unique_id=2115304717]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nea13")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1970003798]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07693867, 0.018668618, 0.2565949, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2099545968]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.388
+anchor_top = 0.439
+anchor_right = 0.61200005
+anchor_bottom = 0.56100005
+offset_left = -0.47601318
+offset_top = 0.02798462
+offset_right = 0.47595215
+offset_bottom = -0.028045654
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=406748453]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "¿Cómo te llamás?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer" unique_id=461227955]
+layout_mode = 2
+text = "Escribí tu nombre..."
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1107397954]
+layout_mode = 2
+text = "Comenzar partida"
+
+[connection signal="text_submitted" from="VBoxContainer/NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

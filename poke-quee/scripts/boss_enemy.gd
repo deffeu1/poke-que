@@ -77,8 +77,8 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 func mostrar_dialogo_revancha() -> void:
 	var lineas: Array[String] = [
-		boss_name + ": ¿Otra vez vos? Creí haberte aplastado la última vez... aunque esa energía que emanás es distinta.",
-		"Protagonista: Este poder es por el Guardián. ¡Hoy se termina todo!"
+		boss_name + ": ¿Otra vez vos, " + GameManager.player_name + "? Creí haberte aplastado la última vez... aunque esa energía que emanás es distinta.",
+		GameManager.player_name + ": Este poder es por el Guardián. ¡Hoy se termina todo!"
 	]
 	
 	var capa := CanvasLayer.new()

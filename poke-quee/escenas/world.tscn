@@ -387,7 +387,6 @@ tile_set = SubResource("TileSet_d0njd")
 position = Vector2(178, 739)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1951445157]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="HUD" unique_id=1424944491]
 anchors_preset = -1

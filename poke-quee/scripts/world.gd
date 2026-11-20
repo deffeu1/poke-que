@@ -7,6 +7,7 @@ extends Node2D
 @onready var potions_label: Label = $HUD/PanelContainer/VBoxContainer/PotionsLabel
 @onready var player_mana_bar: ProgressBar = $HUD/PanelContainer/VBoxContainer/PlayerMana
 @onready var hud: CanvasLayer = $HUD
+@onready var player_name_label: Label = $HUD/PanelContainer/VBoxContainer/PlayerName
 
 var dialogo_venganza_activo: bool = false
 var capa_dialogo: CanvasLayer = null
@@ -86,6 +87,8 @@ func ajustar_limites_camara() -> void:
 	camera.limit_bottom = map_rect.end.y * tile_size.y
 
 func actualizar_hud() -> void:
+	if player_name_label != null:
+		player_name_label.text = GameManager.player_name
 	hp_bar.max_value = GameManager.player_max_hp
 	hp_bar.value = GameManager.player_hp
 	player_mana_bar.max_value = GameManager.player_max_mana

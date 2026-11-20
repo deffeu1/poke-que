@@ -87,9 +87,9 @@ func iniciar_dialogo() -> void:
 	dialogue_box.visible = true
 	
 	if GameManager.guardian_following:
-		dialogue_text.text = "Estoy justo detrás tuyo. ¡Tengamos cuidado con lo que hay más adelante!"
+		dialogue_text.text = "Estoy justo detrás tuyo, " + GameManager.player_name + ". ¡Tengamos cuidado con lo que hay más adelante!"
 	elif GameManager.has_key:
-		dialogue_text.text = "¡Conseguiste la llave! Ya abrí la puerta. Voy con vos, juntos tenemos más chances de salir."
+		dialogue_text.text = "¡Conseguiste la llave, " + GameManager.player_name + "! Ya abrí la puerta. Voy con vos, juntos tenemos más chances de salir."
 		GameManager.has_key = false
 		GameManager.gate_unlocked = true
 		GameManager.talked_to_guardian = true
@@ -100,7 +100,7 @@ func iniciar_dialogo() -> void:
 		dialogue_text.text = "¡Ey, no ataques! Yo no soy como esos salvajes. Necesito que me traigas la llave de esta puerta para poder salir de acá."
 		GameManager.talked_to_guardian = true
 	else:
-		dialogue_text.text = "¿Ya encontraste la llave? Seguí buscando por las otras salas y traémela."
+		dialogue_text.text = "¿Ya encontraste la llave, " + GameManager.player_name + "? Seguí buscando por las otras salas y traémela."
 
 func cerrar_dialogo() -> void:
 	hablando = false

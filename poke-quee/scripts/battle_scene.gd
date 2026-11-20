@@ -19,6 +19,7 @@ var enemy_hp: int = 60
 @onready var btn_bola_fuego: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove2
 @onready var btn_curar: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove3
 @onready var btn_mana: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMana
+@onready var enemy_hud: Control = $EnemyHUD
 
 func _ready() -> void:
 	enemy_name_label.text = GameManager.current_enemy_name
@@ -58,6 +59,7 @@ func _ready() -> void:
 		
 	if GameManager.is_boss_battle:
 		enemy_sprite.scale = Vector2(7.0, 7.0)
+		enemy_hud.position += Vector2(70.0, -20.0)
 	else:
 		enemy_sprite.scale = Vector2(4.0, 4.0)
 		
@@ -79,7 +81,7 @@ func ocultar_menus() -> void:
 
 func turno_jugador() -> void:
 	state = State.PLAYER_TURN
-	dialog_label.text = "¿Qué vas a hacer?"
+	dialog_label.text = "¿Qué va a hacer " + GameManager.player_name + "?"
 	action_menu.visible = true
 	attacks_menu.visible = false
 
