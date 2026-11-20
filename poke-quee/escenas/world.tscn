@@ -386,7 +386,7 @@ tile_map_data = PackedByteArray("AAAFABEAAAAEAAcAAAACABEAAAAEAAcAAABCACUAAAAEAAc
 tile_set = SubResource("TileSet_d0njd")
 
 [node name="character body" parent="." unique_id=1430670121 instance=ExtResource("2_58mta")]
-position = Vector2(345, 51)
+position = Vector2(41, 48)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1951445157]
 
