@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://uk5es38gqwje" path="res://assets/pj/idle/up/idle_up.png" id="3_npaif"]
 [ext_resource type="Texture2D" uid="uid://d2n5ru0p5c82r" path="res://assets/enemigo_gengibre/atak/Christmas_Gingerbread_Attack.png" id="3_tc0ev"]
 [ext_resource type="Texture2D" uid="uid://dffw3nyhv5wq1" path="res://assets/pj/ataque/attack1_up.png" id="5_4ybvi"]
+[ext_resource type="AudioStream" uid="uid://balo1a6bqkix3" path="res://sonidos/FIGHT.wav" id="7_pi7bo"]
+[ext_resource type="AudioStream" uid="uid://dfbjvd0n2vgf4" path="res://sonidos/MUSICA PELEAS.wav" id="8_skkal"]
+[ext_resource type="AudioStream" uid="uid://bh6g57j07ay23" path="res://sonidos/GOLPE NORMAL.wav" id="9_bj8g5"]
+[ext_resource type="AudioStream" uid="uid://bb65fqxasamp6" path="res://sonidos/GOLPE ESPADA.wav" id="10_0wy0d"]
+[ext_resource type="AudioStream" uid="uid://jpcm3spvsvwi" path="res://sonidos/MONSTRUOS.wav" id="11_00es8"]
+[ext_resource type="AudioStream" uid="uid://b3a0kug6t7n2o" path="res://sonidos/MUERTE ENEMIGOS.wav" id="12_0sfgn"]
+[ext_resource type="AudioStream" uid="uid://b0w6c22u3xj3v" path="res://sonidos/MUERTE-HUMANO.wav" id="13_skkal"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0sfgn"]
 atlas = ExtResource("3_tc0ev")
@@ -402,6 +409,35 @@ text = "Volver"
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Poción Maná"
+
+[node name="AudioFight" type="AudioStreamPlayer" parent="." unique_id=1756557624]
+stream = ExtResource("7_pi7bo")
+volume_db = -4.561
+
+[node name="MusicaBatalla" type="AudioStreamPlayer" parent="." unique_id=1399512059]
+stream = ExtResource("8_skkal")
+volume_db = -20.411
+autoplay = true
+
+[node name="AudioGolpeNormal" type="AudioStreamPlayer" parent="." unique_id=1892468206]
+stream = ExtResource("9_bj8g5")
+volume_db = -10.947
+
+[node name="AudioGolpeEspada" type="AudioStreamPlayer" parent="." unique_id=2078896972]
+stream = ExtResource("10_0wy0d")
+volume_db = -9.123
+
+[node name="AudioAtaqueEnemigo" type="AudioStreamPlayer" parent="." unique_id=87898302]
+stream = ExtResource("11_00es8")
+volume_db = -8.211
+
+[node name="AudioMuerteEnemigo" type="AudioStreamPlayer" parent="." unique_id=1820850177]
+stream = ExtResource("12_0sfgn")
+volume_db = -10.947
+
+[node name="AudioMuerteJugador" type="AudioStreamPlayer" parent="." unique_id=1534815679]
+stream = ExtResource("13_skkal")
+volume_db = -4.561
 
 [connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/ActionMenu/BtnAtacar" to="." method="_on_btn_atacar_pressed"]
 [connection signal="pressed" from="BottomBar/HBoxContainer/MenuPanel/ActionMenu/BtnHuir" to="." method="_on_btn_huir_pressed"]

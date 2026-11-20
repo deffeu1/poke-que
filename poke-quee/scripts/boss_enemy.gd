@@ -7,8 +7,10 @@ extends CharacterBody2D
 @export var segunda_ubicacion: Marker2D
 @export var coordenadas_segunda_sala: Vector2 = Vector2.ZERO
 @export var distancia_rechazo_izquierda: float = 48.0
+@export var adelantar_sonido: float = 0.25 
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_golpe_boss: AudioStreamPlayer = $AudioGolpeBoss
 
 var cinematica_iniciada: bool = false
 var rechazando_entrada: bool = false
@@ -41,8 +43,13 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if guardian != null and not GameManager.guardian_dead:
 		GameManager.guardian_following = false
 		var pos_guardian: Vector2 = guardian.global_position
+		var duracion_avance: float = 0.45
+		
+		# Dispara el sonido adelantado mientras el Jefe avanza
+		reproducir_sonido_adelantado(max(0.0, duracion_avance - adelantar_sonido))
+		
 		var tween := create_tween()
-		tween.tween_property(self, "global_position", pos_guardian + Vector2(28, 0), 0.45)
+		tween.tween_property(self, "global_position", pos_guardian + Vector2(28, 0), duracion_avance)
 		await tween.finished
 		
 		if anim.sprite_frames.has_animation("attack"):
@@ -74,6 +81,11 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	GameManager.current_enemy_frames = anim.sprite_frames
 	
 	SceneTransition.cambiar_escena("res://escenas/battle_scene.tscn")
+
+func reproducir_sonido_adelantado(espera: float) -> void:
+	if espera > 0.0:
+		await get_tree().create_timer(espera).timeout
+	audio_golpe_boss.play()
 
 func mostrar_dialogo_revancha() -> void:
 	var lineas: Array[String] = [

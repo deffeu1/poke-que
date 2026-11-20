@@ -4,13 +4,20 @@
 [ext_resource type="Script" uid="uid://dj3fiet3ny42b" path="res://scripts/world.gd" id="1_xsxho"]
 [ext_resource type="PackedScene" uid="uid://b0xp2f71ueqao" path="res://escenas/player.tscn" id="2_58mta"]
 [ext_resource type="PackedScene" uid="uid://bgusutfvxj4is" path="res://escenas/overworld_enemy.tscn" id="4_3f1ia"]
+[ext_resource type="AudioStream" uid="uid://c250fimncbe2a" path="res://sonidos/PASOS (1).wav" id="4_hiicl"]
 [ext_resource type="PackedScene" uid="uid://ncrbeujql68g" path="res://escenas/PotionPickup.tscn" id="5_jhysc"]
 [ext_resource type="PackedScene" uid="uid://c4qpgn86gcwr4" path="res://escenas/npc_guardian.tscn" id="6_iop0s"]
+[ext_resource type="AudioStream" uid="uid://bg4opurl2ft6k" path="res://sonidos/PUERTA.wav" id="6_vknw8"]
 [ext_resource type="PackedScene" uid="uid://cvm7uy3gotipu" path="res://escenas/KeyPickup.tscn" id="7_d0njd"]
 [ext_resource type="PackedScene" uid="uid://d2b4ex5pdn2wd" path="res://escenas/BossEnemy.tscn" id="8_slmik"]
 [ext_resource type="PackedScene" uid="uid://br8f13twi0gkm" path="res://escenas/PowerUpAltar.tscn" id="9_5rmny"]
+[ext_resource type="AudioStream" uid="uid://dckrvpcusfpmr" path="res://sonidos/GOLPE-JEFE.wav" id="10_bii6w"]
 [ext_resource type="PackedScene" uid="uid://c1nknx4i7el72" path="res://escenas/MysticOrb.tscn" id="10_nv5wr"]
 [ext_resource type="PackedScene" uid="uid://ecsjk5gvf5jg" path="res://escenas/ManaPotionPickup.tscn" id="11_nilpj"]
+[ext_resource type="AudioStream" uid="uid://t1fu7ct023oa" path="res://sonidos/AGARRAR LLAVE.wav" id="12_7tvrm"]
+[ext_resource type="AudioStream" uid="uid://cqg44htrlyo0k" path="res://sonidos/MUSICA AMBIENTE.wav" id="12_48p8l"]
+[ext_resource type="AudioStream" uid="uid://b1lvvn5pyt2px" path="res://sonidos/ESPADA.wav" id="12_e7y4q"]
+[ext_resource type="AudioStream" uid="uid://bq071p05ox6ip" path="res://sonidos/ORBE.wav" id="15_yhln1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58mta"]
 texture = ExtResource("1_7jpok")
@@ -386,7 +393,12 @@ tile_map_data = PackedByteArray("AAAFABEAAAAEAAcAAAACABEAAAAEAAcAAABCACUAAAAEAAc
 tile_set = SubResource("TileSet_d0njd")
 
 [node name="character body" parent="." unique_id=1430670121 instance=ExtResource("2_58mta")]
-position = Vector2(41, 48)
+position = Vector2(49, 45)
+
+[node name="AudioPasos" type="AudioStreamPlayer" parent="character body" unique_id=89902777]
+stream = ExtResource("4_hiicl")
+volume_db = -15.551
+bus = &"caverna"
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1951445157]
 
@@ -420,13 +432,23 @@ layout_mode = 2
 [node name="NpcGuardian" parent="." unique_id=236537830 instance=ExtResource("6_iop0s")]
 position = Vector2(95, 566)
 
+[node name="AudioPuerta" type="AudioStreamPlayer" parent="NpcGuardian" unique_id=1551145279]
+stream = ExtResource("6_vknw8")
+volume_db = -20.411
+
 [node name="KeyPickup" parent="." unique_id=1294771555 instance=ExtResource("7_d0njd")]
 position = Vector2(118, 479)
+sonido_llave = ExtResource("12_7tvrm")
 
 [node name="BossEnemy" parent="." unique_id=2049287388 node_paths=PackedStringArray("segunda_ubicacion") instance=ExtResource("8_slmik")]
 position = Vector2(548, 763)
 boss_name = "Señor de la Mazmorra, Okarus"
 segunda_ubicacion = NodePath("../PuntoJefeFinal")
+adelantar_sonido = 0.25
+
+[node name="AudioGolpeBoss" type="AudioStreamPlayer" parent="BossEnemy" unique_id=1944308480]
+stream = ExtResource("10_bii6w")
+volume_db = -20.0
 
 [node name="PuntoJefeFinal" type="Marker2D" parent="." unique_id=2031727528]
 position = Vector2(1220, 769)
@@ -463,25 +485,42 @@ position = Vector2(1131, 244)
 [node name="PowerUpAltar" parent="." unique_id=404536467 instance=ExtResource("9_5rmny")]
 position = Vector2(341, 1076)
 
+[node name="AudioEspada" type="AudioStreamPlayer" parent="PowerUpAltar" unique_id=1310993704]
+stream = ExtResource("12_e7y4q")
+
 [node name="MysticOrb" parent="." unique_id=2026985273 instance=ExtResource("10_nv5wr")]
 position = Vector2(1131, 395)
+
+[node name="AudioOrbe" type="AudioStreamPlayer" parent="MysticOrb" unique_id=634710924]
+stream = ExtResource("15_yhln1")
 
 [node name="Node" type="Node" parent="." unique_id=1212506628]
 
 [node name="PotionPickup" parent="Node" unique_id=902387 instance=ExtResource("5_jhysc")]
 position = Vector2(273, 48)
+sonido_pocion = ExtResource("12_7tvrm")
 
 [node name="PotionPickup2" parent="Node" unique_id=429847462 instance=ExtResource("5_jhysc")]
 position = Vector2(556, 209)
+sonido_pocion = ExtResource("12_7tvrm")
 
 [node name="PotionPickup3" parent="Node" unique_id=1935369728 instance=ExtResource("5_jhysc")]
 position = Vector2(217, 923)
+sonido_pocion = ExtResource("12_7tvrm")
 
 [node name="ManaPotionPickup" parent="Node" unique_id=1856624168 instance=ExtResource("11_nilpj")]
 position = Vector2(414, 652)
+sonido_pocion = ExtResource("12_7tvrm")
 
 [node name="ManaPotionPickup2" parent="Node" unique_id=1253708267 instance=ExtResource("11_nilpj")]
 position = Vector2(480, 237)
+sonido_pocion = ExtResource("12_7tvrm")
 
 [node name="ManaPotionPickup3" parent="Node" unique_id=738908118 instance=ExtResource("11_nilpj")]
 position = Vector2(848, 646)
+sonido_pocion = ExtResource("12_7tvrm")
+
+[node name="MusicaAmbiente" type="AudioStreamPlayer" parent="." unique_id=1454084417]
+stream = ExtResource("12_48p8l")
+volume_db = -40.823
+autoplay = true

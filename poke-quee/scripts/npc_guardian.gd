@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var prompt_label: Label = $PromptLabel
 @onready var dialogue_box: PanelContainer = $DialogueLayer/DialogueBox
 @onready var dialogue_text: Label = $DialogueLayer/DialogueBox/DialogueText
+@onready var audio_puerta: AudioStreamPlayer = $AudioPuerta
 
 var siguiendo_activo: bool = false
 var player_in_range: bool = false
@@ -95,6 +96,7 @@ func iniciar_dialogo() -> void:
 		GameManager.talked_to_guardian = true
 		GameManager.guardian_following = true
 		colision.disabled = true
+		audio_puerta.play()
 		abrir_puerta()
 	elif not GameManager.talked_to_guardian:
 		dialogue_text.text = "¡Ey, no ataques! Yo no soy como esos salvajes. Necesito que me traigas la llave de esta puerta para poder salir de acá."

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://doo2umh7x5p11"]
 
 [ext_resource type="Script" uid="uid://do28yfbpwy2qa" path="res://scripts/end_screen.gd" id="1_ewk0v"]
+[ext_resource type="AudioStream" uid="uid://w4a8ddom1xhh" path="res://sonidos/VICTORIA.wav" id="2_77o3q"]
 
 [node name="EndScreen" type="Control" unique_id=1476267443]
 layout_mode = 3
@@ -48,6 +49,10 @@ text = "Volver a Jugar"
 [node name="BtnMenu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=106153224]
 layout_mode = 2
 text = "Menú Principal"
+
+[node name="MusicaVictoria" type="AudioStreamPlayer" parent="." unique_id=505434423]
+stream = ExtResource("2_77o3q")
+volume_db = -31.103
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnReintentar" to="." method="_on_btn_reintentar_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnMenu" to="." method="_on_btn_menu_pressed"]

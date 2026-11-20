@@ -2,10 +2,12 @@ extends Area2D
 
 @export var bonus_max_hp: int = 40
 @export var bonus_max_mana: int = 30
+@export var retraso_sonido: float = 2.0 # <--- Ajustá los segundos exactos desde el Inspector
 @export var mensaje_obtencion: String = "¡Una energía ancestral recorre tu cuerpo! Tu ataque, vida máxima (+40 PS) y maná máximo (+30 PM) aumentaron. Ahora podés enfrentar al Señor de la Mazmorra."
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var prompt_label: Label = $PromptLabel
+@onready var audio_espada: AudioStreamPlayer = $AudioEspada
 
 var player_in_range: bool = false
 var player_ref: Node2D = null
@@ -61,6 +63,9 @@ func activar_powerup() -> void:
 	if player_ref != null and player_ref.has_method("set_physics_process"):
 		player_ref.set_physics_process(false)
 		
+	# Dispara el sonido con el delay configurado mientras la animación corre
+	reproducir_sonido_con_delay()
+		
 	var anim_nombre := obtener_nombre_animacion()
 	if anim_nombre != "":
 		sprite.play(anim_nombre)
@@ -84,6 +89,11 @@ func activar_powerup() -> void:
 	
 	if player_ref != null and player_ref.has_method("set_physics_process"):
 		player_ref.set_physics_process(true)
+
+func reproducir_sonido_con_delay() -> void:
+	if retraso_sonido > 0.0:
+		await get_tree().create_timer(retraso_sonido).timeout
+	audio_espada.play()
 
 func mostrar_dialogo_powerup() -> void:
 	var capa := CanvasLayer.new()

@@ -3,7 +3,6 @@ extends Control
 enum State { START, PLAYER_TURN, ENEMY_TURN, BUSY, WIN, LOSE }
 var state: State = State.START
 const COSTO_BOLA_FUEGO: int = 20
-
 var enemy_max_hp: int = 60
 var enemy_hp: int = 60
 
@@ -20,6 +19,15 @@ var enemy_hp: int = 60
 @onready var btn_curar: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMove3
 @onready var btn_mana: Button = $BottomBar/HBoxContainer/MenuPanel/AttacksMenu/BtnMana
 @onready var enemy_hud: Control = $EnemyHUD
+
+# --- NODOS DE AUDIO ---
+@onready var musica_batalla: AudioStreamPlayer = $MusicaBatalla
+@onready var audio_fight: AudioStreamPlayer = $AudioFight
+@onready var audio_golpe_normal: AudioStreamPlayer = $AudioGolpeNormal
+@onready var audio_golpe_espada: AudioStreamPlayer = $AudioGolpeEspada
+@onready var audio_ataque_enemigo: AudioStreamPlayer = $AudioAtaqueEnemigo
+@onready var audio_muerte_enemigo: AudioStreamPlayer = $AudioMuerteEnemigo
+@onready var audio_muerte_jugador: AudioStreamPlayer = $AudioMuerteJugador
 
 func _ready() -> void:
 	enemy_name_label.text = GameManager.current_enemy_name
@@ -71,6 +79,7 @@ func _ready() -> void:
 	enemy_hp_bar.value = enemy_hp
 	
 	ocultar_menus()
+	audio_fight.play()
 	dialog_label.text = "¡" + GameManager.current_enemy_name + " te desafía!"
 	await get_tree().create_timer(1.5).timeout
 	turno_jugador()
@@ -181,6 +190,11 @@ func ejecutar_movimiento(nombre: String, valor_min: int, valor_max: int, es_cura
 		tween.tween_property(player_sprite, "modulate", Color(0.4, 1, 0.4), 0.15)
 		tween.tween_property(player_sprite, "modulate", Color.WHITE, 0.15)
 	else:
+		if GameManager.player_has_powerup:
+			audio_golpe_espada.play()
+		else:
+			audio_golpe_normal.play()
+			
 		if player_sprite.sprite_frames.has_animation("attack"):
 			player_sprite.play("attack")
 			await player_sprite.animation_finished
@@ -200,6 +214,7 @@ func ejecutar_movimiento(nombre: String, valor_min: int, valor_max: int, es_cura
 
 func turno_enemigo() -> void:
 	state = State.ENEMY_TURN
+	audio_ataque_enemigo.play()
 	
 	if enemy_sprite.sprite_frames.has_animation("attack"):
 		enemy_sprite.play("attack")
@@ -225,6 +240,8 @@ func turno_enemigo() -> void:
 	
 	if GameManager.player_hp <= 0:
 		state = State.LOSE
+		audio_muerte_jugador.play()
+		
 		if GameManager.is_boss_battle and not GameManager.boss_first_encounter_done:
 			GameManager.boss_first_encounter_done = true
 			GameManager.show_revenge_dialogue = true
@@ -240,6 +257,7 @@ func turno_enemigo() -> void:
 			SceneTransition.cambiar_escena("res://escenas/EndScreen.tscn")
 	else:
 		turno_jugador()
+
 func animar_impacto(sprite: AnimatedSprite2D) -> void:
 	var pos_original := sprite.position
 	var tween := create_tween()
@@ -252,6 +270,9 @@ func animar_impacto(sprite: AnimatedSprite2D) -> void:
 
 func ganar_combate() -> void:
 	state = State.WIN
+	musica_batalla.stop()
+	audio_muerte_enemigo.play()
+	
 	if GameManager.current_enemy_id != "":
 		GameManager.defeated_enemies.append(GameManager.current_enemy_id)
 		

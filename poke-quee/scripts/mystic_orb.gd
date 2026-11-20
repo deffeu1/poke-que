@@ -4,6 +4,7 @@ extends Area2D
 @export var mensaje_victoria: String = "¡Has recuperado el Orbe Místico, "
 
 @onready var sprite: Node2D = $AnimatedSprite2D
+@onready var audio_orbe: AudioStreamPlayer = $AudioOrbe
 
 var recogido: bool = false
 
@@ -27,6 +28,12 @@ func _on_body_entered(body: Node2D) -> void:
 	recogido = true
 	if body.has_method("set_physics_process"):
 		body.set_physics_process(false)
+		
+	# Frena la música de fondo del mapa y reproduce el sonido del Orbe
+	var musica_mapa := get_tree().current_scene.find_child("MusicaAmbiente", true, false)
+	if musica_mapa is AudioStreamPlayer:
+		musica_mapa.stop()
+	audio_orbe.play()
 		
 	var tween := create_tween()
 	tween.tween_property(sprite, "scale", sprite.scale * 1.5, 0.35)

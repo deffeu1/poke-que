@@ -2,11 +2,13 @@ extends Control
 
 @onready var title_label: Label = $CenterContainer/VBoxContainer/TitleLabel
 @onready var sub_label: Label = $CenterContainer/VBoxContainer/SubLabel
+@onready var musica_victoria: AudioStreamPlayer = $MusicaVictoria
 
 func _ready() -> void:
 	if GameManager.game_won:
 		title_label.text = "¡VICTORIA!"
 		sub_label.text = "Derrotaste al jefe y completaste la mazmorra."
+		musica_victoria.play()
 	else:
 		title_label.text = "FIN DEL JUEGO"
 		sub_label.text = "Te quedaste sin energía en el camino."
