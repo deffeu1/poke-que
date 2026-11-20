@@ -11,16 +11,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5p3c7")
 
-[node name="Background" type="ColorRect" parent="." unique_id=454615210]
+[node name="VideoStreamPlayer" type="ColorRect" parent="." unique_id=1322916021]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.018125223, 1.2995303e-06, 0.3790183, 1)
+color = Color(0.14172745, 0.1189652, 0.4920705, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=593916069]
+[node name="CenterContainer" type="CenterContainer" parent="VideoStreamPlayer" unique_id=593916069]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,20 +28,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer" unique_id=280778374]
+[node name="VBoxContainer" type="VBoxContainer" parent="VideoStreamPlayer/CenterContainer" unique_id=280778374]
 layout_mode = 2
 
-[node name="GameTitle" type="Label" parent="Background/CenterContainer/VBoxContainer" unique_id=1886098224]
+[node name="GameTitle" type="Label" parent="VideoStreamPlayer/CenterContainer/VBoxContainer" unique_id=1886098224]
 layout_mode = 2
 text = "POKE-QUEE"
 
-[node name="BtnJugar" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=330837415]
+[node name="BtnJugar" type="Button" parent="VideoStreamPlayer/CenterContainer/VBoxContainer" unique_id=330837415]
 layout_mode = 2
 text = "Jugar"
 
-[node name="BtnSalir" type="Button" parent="Background/CenterContainer/VBoxContainer" unique_id=536300867]
+[node name="BtnSalir" type="Button" parent="VideoStreamPlayer/CenterContainer/VBoxContainer" unique_id=536300867]
 layout_mode = 2
 text = "Salir"
 
-[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnJugar" to="." method="_on_btn_jugar_pressed"]
-[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/BtnSalir" to="." method="_on_btn_salir_pressed"]
+[connection signal="pressed" from="VideoStreamPlayer/CenterContainer/VBoxContainer/BtnJugar" to="." method="_on_btn_jugar_pressed"]
+[connection signal="pressed" from="VideoStreamPlayer/CenterContainer/VBoxContainer/BtnSalir" to="." method="_on_btn_salir_pressed"]
