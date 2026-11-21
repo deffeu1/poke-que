@@ -393,7 +393,7 @@ tile_map_data = PackedByteArray("AAAFABEAAAAEAAcAAAACABEAAAAEAAcAAABCACUAAAAEAAc
 tile_set = SubResource("TileSet_d0njd")
 
 [node name="character body" parent="." unique_id=1430670121 instance=ExtResource("2_58mta")]
-position = Vector2(49, 45)
+position = Vector2(177, 51)
 
 [node name="AudioPasos" type="AudioStreamPlayer" parent="character body" unique_id=89902777]
 stream = ExtResource("4_hiicl")
@@ -437,7 +437,7 @@ stream = ExtResource("6_vknw8")
 volume_db = -20.411
 
 [node name="KeyPickup" parent="." unique_id=1294771555 instance=ExtResource("7_d0njd")]
-position = Vector2(118, 479)
+position = Vector2(536, 236)
 sonido_llave = ExtResource("12_7tvrm")
 
 [node name="BossEnemy" parent="." unique_id=2049287388 node_paths=PackedStringArray("segunda_ubicacion") instance=ExtResource("8_slmik")]
